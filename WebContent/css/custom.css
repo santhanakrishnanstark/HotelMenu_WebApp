@@ -1,3 +1,6 @@
+*{
+	user-select: none; 
+}
 .main_title{
     color: #fff;
     font-size: 46px;
@@ -11,4 +14,73 @@
 }
 .review-area.section-gap,.blog-area.section-gap,.reservation-area.section-gap.relative{
     display: none;
+}
+
+.menu-buttons{
+	background-color: #eee;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 5px; 
+    cursor: pointer;
+}
+.menu-buttons .minus{
+	background-color: #F44336;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+}
+.menu-buttons .number{
+	background-color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+}
+.menu-buttons .plus{
+	background-color: #4CAF50;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.order-menu{
+    padding: 25px;
+    padding-top: 0px;
+    border-radius: 10px 0px 10px 10px;
+    background-color: #ffffff;
+    box-shadow: 1px -1px 0px 0px #eee, 1px -4px 20px 4px #eee, 1px 1px 11px 0px #ccc;
+    position: fixed;
+    transform: translate(6%, 3%);
+   	top: 90%;
+   	bottom: 0px;
+    z-index: 1;
+    width: 89%;
+    transition: all 0.5s ease;
+    overflow-y: scroll;
+}
+.order-title{
+	padding-top: 25px;
+	cursor: pointer;
+}
+.order-content {
+    padding: 20px 0px;
+}
+.order-menu-open{
+	transition: all 0.5s ease;
+	top:20%;
+	bottom: 0px;
+}
+.order-menu .order-title span {
+    font-size: 18px;
+    position: absolute;
+    right: 28px;
+    top: 18px;
+}
+.genric-btn.disable{
+	color: gray !important;
+}
+.tickIcn i{
+	color: gray;
+    font-size: 26px; 
+}
+.delivered{
+	color: #E91E63 !important; 
 }
