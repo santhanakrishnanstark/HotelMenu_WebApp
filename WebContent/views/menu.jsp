@@ -1,5 +1,8 @@
 	<!DOCTYPE html>
-	<html lang="zxx" class="no-js">
+	<%@page import="java.sql.ResultSet"%>
+<%@page import="com.hotelmenu.service.DbConnect"%>
+<%@page import="java.sql.Statement"%>
+<html lang="zxx" class="no-js">
 	<head>
 		<!-- Mobile Specific Meta -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,7 +40,7 @@
 					<div class="container">
 				  		<div class="row justify-content-center">
 						      <div id="logo">
-						        <a href="index.html"> <h1 class="main_title">Hotel Non-Veg</h1> </a>
+						        <a href="index.html"> <h1 class="main_title">Menu Card</h1> </a>
 						      </div>
 				  		</div>			  					
 					</div>
@@ -133,127 +136,30 @@
                     
                     <div class="filters-content">
                         <div class="row grid">
-                            <div class="col-md-6 all lunch">
-								<div class="single-menu">
-									<div class="title-wrap d-flex justify-content-between">
-										<h4>Chicken Briyani</h4>
-										<h4 class="price">149 Rs</h4>
-									</div>			
-									<p>
-										Usage of the Internet is becoming more common due to rapid advance.
-									</p>									
-								</div>					                               
-							</div>
-							<div class="col-md-6 all lunch">
-								<div class="single-menu">
-									<div class="title-wrap d-flex justify-content-between">
-										<h4>Mutton Briyani</h4>
-										<h4 class="price">249 Rs</h4>
-									</div>			
-									<p>
-										Usage of the Internet is becoming more common due to rapid advance.
-									</p>									
-								</div>					                               
-							</div>
-							<div class="col-md-6 all lunch">
-								<div class="single-menu">
-									<div class="title-wrap d-flex justify-content-between">
-										<h4>Prawn Briyani</h4>
-										<h4 class="price">249 Rs</h4>
-									</div>			
-									<p>
-										Usage of the Internet is becoming more common due to rapid advance.
-									</p>									
-								</div>					                               
-                            </div>                             
-                            <div class="col-md-6 all dinner">
-								<div class="single-menu">
-									<div class="title-wrap d-flex justify-content-between">
-										<h4>Parotta</h4>
-										<h4 class="price">30 Rs (2 pic)</h4>
-									</div>			
-									<p>
-										Usage of the Internet is becoming more common due to rapid advance.
-									</p>									
-								</div>
-                            </div>
-                            <div class="col-md-6 all budget-meal d-none">
-								<div class="single-menu">
-									<div class="title-wrap d-flex justify-content-between">
-										<h4>Macchiato</h4>
-										<h4 class="price">$49</h4>
-									</div>			
-									<p>
-										Usage of the Internet is becoming more common due to rapid advance.
-									</p>									
-								</div>
-                            </div>
-                            <div class="col-md-6 all breakfast dinner">
-								<div class="single-menu">
-									<div class="title-wrap d-flex justify-content-between">
-										<h4>Dosa</h4>
-										<h4 class="price">49 Rs</h4>
+                            <% Statement st = DbConnect.getConnection();
+								ResultSet rs = st.executeQuery("select * from food_record");
+								while(rs.next()){
+									if(rs.getString("availability").startsWith("1")){ 
+							%>		<div class="col-md-6 all <%= rs.getString("category")%>">
+										<div class="single-menu">
+											<div class="title-wrap d-flex justify-content-between">
+												<h4><%=rs.getString("name") %></h4>
+												<h4 class="price"><%=rs.getString("cost") %> Rs</h4>
+											</div>
+											<p>Some Description About the Dish</p>
+											<div class="d-flex justify-content-between">
+												<h4></h4>
+												<div class="menu-buttons">
+													<span class="minus" onclick="decItem(this)">-</span>
+													<span item="<%=rs.getString("food_id") %>" price="<%=rs.getString("cost") %>" class="number">0</span>
+													<span class="plus" onclick="incItem(this)">+</span>
+												</div>
+											</div>
+										</div>
 									</div>
-									<p>
-										Usage of the Internet is becoming more common due to rapid advance.
-									</p>									
-								</div>
-							</div>
-							<div class="col-md-6 all breakfast dinner">
-								<div class="single-menu">
-									<div class="title-wrap d-flex justify-content-between">
-										<h4>Idly</h4>
-										<h4 class="price">40 Rs (2pic)</h4>
-									</div>
-									<p>
-										Usage of the Internet is becoming more common due to rapid advance.
-									</p>									
-								</div>
-							</div>
-							<div class="col-md-6 all breakfast dinner">
-								<div class="single-menu">
-									<div class="title-wrap d-flex justify-content-between">
-										<h4>Chapatti</h4>
-										<h4 class="price">50 Rs (2pic)</h4>
-									</div>
-									<p>
-										Usage of the Internet is becoming more common due to rapid advance.
-									</p>									
-								</div>
-							</div>
-							<div class="col-md-6 all breakfast">
-								<div class="single-menu">
-									<div class="title-wrap d-flex justify-content-between">
-										<h4>Pongal</h4>
-										<h4 class="price">40 Rs</h4>
-									</div>
-									<p>
-										Usage of the Internet is becoming more common due to rapid advance.
-									</p>									
-								</div>
-                            </div>
-                            <div class="col-md-6 all lunch">
-								<div class="single-menu">
-									<div class="title-wrap d-flex justify-content-between">
-										<h4>Egg Briyani</h4>
-										<h4 class="price">129 Rs</h4>
-									</div>
-									<p>
-										Usage of the Internet is becoming more common due to rapid advance.
-									</p>									
-								</div>
-                            </div>
-                            <div class="col-md-6 all buffet d-none">
-								<div class="single-menu">
-									<div class="title-wrap d-flex justify-content-between">
-										<h4>Ristretto</h4>
-										<h4 class="price">$49</h4>
-									</div>
-									<p>
-										Usage of the Internet is becoming more common due to rapid advance.
-									</p>									
-								</div>
-                            </div>                            
+							<%		}
+								}
+							%>         
                         </div>
                     </div>
                     
@@ -261,42 +167,44 @@
             </section>
             <!-- End menu-area Area -->			
 
-			<!-- Start reservation Area -->
-			<section class="reservation-area section-gap relative">
-				<div class="overlay overlay-bg"></div>
-				<div class="container">
-					<div class="row justify-content-between align-items-center">
-						<div class="col-lg-6 reservation-left">
-							<h1 class="text-white">Reserve Your Seats
-							to Confirm if You Come
-							with Your Family</h1>
-							<p class="text-white pt-20">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.
-							</p>
-						</div>
-						<div class="col-lg-5 reservation-right">
-							<form class="form-wrap text-center" action="#">
-								<input type="text" class="form-control" name="name" placeholder="Your Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'" >
-								<input type="email" class="form-control" name="email" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'" >
-								<input type="text" class="form-control" name="phone" placeholder="Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'" >		
-								<input type="text" class="form-control date-picker" name="date" placeholder="Select Date & time" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Select Date & time'" >									
-								<div class="form-select" id="service-select">
-									<select>
-										<option data-display="">Select Event</option>
-										<option value="1">Event One</option>
-										<option value="2">Event Two</option>
-										<option value="3">Event Three</option>
-										<option value="4">Event Four</option>
-									</select>
-								</div>									
-								<button class="primary-btn text-uppercase mt-20">Make Reservation</button>
-							</form>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End reservation Area -->
-			
+			<!-- Start Order Popup -->
+			<div class="order-menu">
+				<div class="order-title"  onclick="toggleOrderPopup()">
+					<h5>Your List >>></h5>
+					<span><i class="fa fa-bars" aria-hidden="true"></i></span>
+				</div>
+				<div class="order-content">
+					<table class="table" width="100%">
+						<thead>
+							<tr>
+								<th>Item Name</th>
+								<th>Quantity</th>
+								<th>Price</th>
+							</tr>
+						</thead>
+						<tbody id="total-order-list">
+							
+						</tbody>
+					</table>
+				</div>
+				<div class="order-content">
+					<h3 class="my-3"> Your Current List</h3>
+					<table class="table" width="100%">
+						<thead>
+							<tr>
+								<th>Item Name</th>
+								<th>Quantity</th>
+								<th>Price</th>
+							</tr>
+						</thead>
+						<tbody id="order-list">
+							
+						</tbody>
+					</table>
+				</div>
+			</div>			
+			<!-- End Order Popup -->
+
 			<!-- Start gallery-area Area -->
             <section class="gallery-area section-gap" id="gallery">
                 <div class="container">
@@ -366,151 +274,7 @@
                     
                 </div>
             </section>
-            <!-- End gallery-area Area -->			
-
-			<!-- Start review Area -->
-			<section class="review-area section-gap">
-				<div class="container">
-					<div class="row">
-						<div class="active-review-carusel">
-							<div class="single-review">
-								<img src="../img/user.png" alt="">
-								<h4>Hulda Sutton</h4>
-								<div class="star">
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star"></span>								
-								</div>	
-								<p>
-									“Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.”
-								</p>
-							</div>
-							<div class="single-review">
-								<img src="../img/user.png" alt="">
-								<h4>Hulda Sutton</h4>
-								<div class="star">
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star"></span>								
-								</div>	
-								<p>
-									“Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.”
-								</p>
-							</div>	
-							<div class="single-review">
-								<img src="../img/user.png" alt="">
-								<h4>Hulda Sutton</h4>
-								<div class="star">
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star"></span>								
-								</div>	
-								<p>
-									“Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.”
-								</p>
-							</div>
-							<div class="single-review">
-								<img src="../img/user.png" alt="">
-								<h4>Hulda Sutton</h4>
-								<div class="star">
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star checked"></span>
-									<span class="fa fa-star"></span>								
-								</div>	
-								<p>
-									“Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.”
-								</p>
-							</div>														
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End review Area -->					
-
-			<!-- Start blog Area -->
-			<section class="blog-area section-gap" id="blog">
-				<div class="container">
-					<div class="row d-flex justify-content-center">
-						<div class="menu-content pb-70 col-lg-8">
-							<div class="title text-center">
-								<h1 class="mb-10">Latest From Our Blog</h1>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua.</p>
-							</div>
-						</div>
-					</div>					
-					<div class="row">
-						<div class="col-lg-3 col-md-6 col-sm-6 single-blog">
-							<div class="thumb">
-								<img class="img-fluid" src="../img/b1.jpg" alt="">								
-							</div>
-							<p class="date">10 Jan 2018</p>
-							<a href="blog-single.html"><h4>Cooking Perfect Fried Rice
-							in minutes</h4></a>
-							<p>
-								inappropriate behavior ipsum dolor sit amet, consectetur.
-							</p>
-							<div class="meta-bottom d-flex justify-content-between">
-								<p><span class="lnr lnr-heart"></span> 15 Likes</p>
-								<p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-							</div>									
-						</div>
-						<div class="col-lg-3 col-md-6 col-sm-6 single-blog">
-							<div class="thumb">
-								<img class="img-fluid" src="../img/b2.jpg" alt="">								
-							</div>
-							<p class="date">10 Jan 2018</p>
-							<a href="blog-single.html"><h4>Secret of making Heart 
-							Shaped eggs</h4></a>
-							<p>
-								inappropriate behavior ipsum dolor sit amet, consectetur.
-							</p>
-							<div class="meta-bottom d-flex justify-content-between">
-								<p><span class="lnr lnr-heart"></span> 15 Likes</p>
-								<p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-							</div>									
-						</div>
-						<div class="col-lg-3 col-md-6 col-sm-6 single-blog">
-							<div class="thumb">
-								<img class="img-fluid" src="../img/b3.jpg" alt="">								
-							</div>
-							<p class="date">10 Jan 2018</p>
-							<a href="blog-single.html"><h4>How to check steak if 
-							it is tender or not</h4></a>
-							<p>
-								inappropriate behavior ipsum dolor sit amet, consectetur.
-							</p>
-							<div class="meta-bottom d-flex justify-content-between">
-								<p><span class="lnr lnr-heart"></span> 15 Likes</p>
-								<p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-							</div>									
-						</div>
-						<div class="col-lg-3 col-md-6 col-sm-6 single-blog">
-							<div class="thumb">
-								<img class="img-fluid" src="../img/b4.jpg" alt="">								
-							</div>
-							<p class="date">10 Jan 2018</p>
-							<a href="blog-single.html"><h4>Seaseme and black seed
-							Flavored Bun Rocks</h4></a>
-							<p>
-								inappropriate behavior ipsum dolor sit amet, consectetur.
-							</p>
-							<div class="meta-bottom d-flex justify-content-between">
-								<p><span class="lnr lnr-heart"></span> 15 Likes</p>
-								<p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-							</div>									
-						</div>							
-					</div>
-				</div>	
-			</section>
-			<!-- End blog Area -->							
+            <!-- End gallery-area Area -->									
 
 			<!-- start footer Area -->		
 			<footer class="footer-area" id="contact_us">
@@ -574,7 +338,7 @@
 					<div class="container">
 						<div class="row footer-bottom d-flex justify-content-between align-items-center">
 							<p class="col-lg-8 col-mdcol-sm-6 -6 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | 
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 							<ul class="col-lg-4 col-mdcol-sm-6 -6 social-icons text-right">
 	                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -591,8 +355,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="../js/vendor/jquery-2.2.4.min.js"></script>
 			<script src="../js/popper.min.js"></script>
 			<script src="../js/vendor/bootstrap.min.js"></script>			
-			<script src="../https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>		
- 			<script src="../js/jquery-ui.js"></script>					
+			<script src="../js/jquery-ui.js"></script>					
   			<script src="../js/easing.min.js"></script>			
 			<script src="../js/hoverIntent.js"></script>
 			<script src="../js/superfish.min.js"></script>	
@@ -602,6 +365,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="../js/owl.carousel.min.js"></script>			
             <script src="../js/isotope.pkgd.min.js"></script>								
 			<script src="../js/mail-script.js"></script>	
-			<script src="../js/main.js"></script>	
+			<script src="../js/main.js"></script>
+			<script src="../js/menu-script.js"></script>	
 		</body>
 	</html>

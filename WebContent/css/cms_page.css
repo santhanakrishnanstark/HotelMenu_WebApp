@@ -1,0 +1,32 @@
+header{
+	box-shadow: 0px 1px 10px #eee;
+    background-color: #000;
+}
+header .title{
+	color: #fff;
+}
+main{
+	background-color: #f9f9ff; 
+}
+section{
+	padding: 35px 0px;
+}
+.food_record table{
+	margin-top: 30px;
+}
+.food_record table a{
+	color: #fff !important;
+}
+.food_record table a:hover{
+	color: #000 !important;
+}
+
+/** add_food css **/
+.food_form label{
+	font-size: 17px;
+}
+.food_form input[type="radio"], .food_form input[type="checkbox"]{
+	width: 25px;
+    height: 16px;
+    vertical-align: middle;
+}
